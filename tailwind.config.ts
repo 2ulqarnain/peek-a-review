@@ -13,6 +13,17 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        "baby-blue": "#E7F2F8",
+        "baby-blue-darker": "#3a94c5",
+        Aquamarine: "#74BDCB",
+        "Aquamarine-darker": "#347d8b",
+        salmon: "#FFA384",
+        freesia: "#EFE7BC",
+      },
+      fontFamily: {
+        "roboto-slab": "var(--font-roboto-slab)",
+      },
     },
   },
   plugins: [],
