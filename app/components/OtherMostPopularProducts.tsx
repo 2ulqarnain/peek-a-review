@@ -10,10 +10,14 @@ const mostPopularProducts = [
   { name: "Product 7", id: "product-7" },
 ];
 
-export default function OtherMostPopularProducts() {
+export default function OtherMostPopularProducts({
+  heading = "Most Popular",
+}: {
+  heading?: string;
+}) {
   return (
     <div>
-      <h2 className={"text-3xl font-medium"}>Most Popular</h2>
+      <h2 className={"text-3xl font-medium capitalize"}>{heading}</h2>
       <div className={"mb-10 mt-5 h-1 w-full rounded-full bg-Aquamarine"}></div>
       <ul className={"flex flex-col gap-5"}>
         {mostPopularProducts.map((product) => (

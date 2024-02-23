@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    width: 100vw;
+    max-width: 100vw;
+    min-height:100vh;
+    height:100vh;
+}
+
 .styled-link {
     @apply hover:underline decoration-2 decoration-salmon transition-transform hover:scale-105 transform inline-block
 }

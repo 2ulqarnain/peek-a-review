@@ -23,6 +23,7 @@ const config: Config = {
       },
       fontFamily: {
         "roboto-slab": "var(--font-roboto-slab)",
+        pops: "var(--font-poppins)",
       },
     },
   },

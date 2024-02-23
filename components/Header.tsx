@@ -6,7 +6,7 @@ import HoverDropdown from "@/components/dropdowns/HoverDropdown";
 
 export default function Header() {
   return (
-    <header className={"flex gap-5 bg-baby-blue p-5"}>
+    <header className={"flex gap-5 bg-baby-blue p-5 text-black"}>
       <div
         className={
           "relative flex aspect-[2] w-48 items-center justify-center italic text-zinc-500"

@@ -64,29 +64,38 @@ function Categories() {
       <ul className={"flex flex-col gap-5"}>
         {categories.map((category) => (
           <li key={category.id}>
-            <div className={"rounded-xl py-5"}>
+            <div className={"group/category rounded-xl py-5"}>
               <h2 className={"text-3xl font-semibold"}>{category.name}</h2>
               <ul className={"mt-5 grid grid-cols-3 justify-center gap-5"}>
                 {category.subCategories.map((subCategory) => (
-                  <li
-                    key={subCategory.id}
-                    className={"group transition-transform hover:scale-105"}
-                  >
-                    <div className={"relative flex aspect-video flex-col"}>
-                      <Image
-                        src={crib}
-                        alt={"product image"}
-                        fill
-                        className={"rounded"}
-                      />
-                    </div>
-                    <p
+                  <li key={subCategory.id}>
+                    <button
                       className={
-                        "font-roboto-slab text-baby-blue-darker-darker text-xl font-medium group-hover:scale-95"
+                        "group h-full w-full transition-transform hover:scale-105"
                       }
                     >
-                      {subCategory.name}
-                    </p>
+                      <div
+                        className={
+                          "relative flex aspect-video flex-col overflow-hidden rounded"
+                        }
+                      >
+                        <Image
+                          src={crib}
+                          alt={"product image"}
+                          fill
+                          className={
+                            "rounded transition-transform duration-200 group-hover:scale-110"
+                          }
+                        />
+                      </div>
+                      <p
+                        className={
+                          "text-center font-roboto-slab text-xl font-medium transition-transform duration-200 ease-in group-hover:scale-110"
+                        }
+                      >
+                        {subCategory.name}
+                      </p>
+                    </button>
                   </li>
                 ))}
               </ul>

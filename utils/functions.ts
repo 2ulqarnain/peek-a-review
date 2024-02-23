@@ -1,0 +1,1 @@
+export const kebabToNormal = (str: string) => str.replace(/-/g, " ");
