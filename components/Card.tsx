@@ -18,7 +18,7 @@ export default function Card({
   return (
     <Link
       href={link}
-      className={`group w-full transition-transform hover:scale-105 ${className}`}
+      className={`group w-full transition-transform duration-300 hover:scale-105 ${className}`}
     >
       <div
         className={
@@ -30,13 +30,13 @@ export default function Card({
           alt={imageAlt}
           fill
           className={
-            "rounded transition-transform duration-200 group-hover:scale-110"
+            "rounded-xl transition-transform duration-200 group-hover:scale-110"
           }
         />
       </div>
       <p
         className={
-          "my-2 text-center font-roboto-slab text-xl font-medium transition-transform duration-200 ease-in group-hover:scale-110"
+          "my-2 text-center font-roboto-slab text-xl font-medium transition-transform duration-100 group-hover:scale-110"
         }
       >
         {label}

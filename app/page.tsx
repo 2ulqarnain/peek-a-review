@@ -1,7 +1,7 @@
 import Image from "next/image";
-import MostPopularProduct from "@/app/components/MostPopularProduct";
 import OtherMostPopularProducts from "@/app/components/OtherMostPopularProducts";
 import crib from "../public/baby-crib.webp";
+import ProductCard from "@/components/ProductCard";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
           "relative grid h-[calc(100vh-230px)] grid-cols-2 gap-16 p-24 px-48"
         }
       >
-        <MostPopularProduct />
+        <ProductCard imageAlt={""} />
         <OtherMostPopularProducts />
       </div>
       <Description />

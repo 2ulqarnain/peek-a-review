@@ -4,10 +4,10 @@ import Card from "@/components/Card";
 import ProductCard from "@/components/ProductCard";
 
 type props = {
-  params: { category: string };
+  params: { category: string; subCategory: string };
 };
 
-export default function Home({ params: { category } }: props) {
+export default function Home({ params: { category, subCategory } }: props) {
   return (
     <main className="flex min-h-screen flex-col">
       <div
@@ -17,7 +17,7 @@ export default function Home({ params: { category } }: props) {
       >
         <ProductCard imageAlt={""} />
         <OtherMostPopularProducts
-          heading={`Most Popular Products in ${kebabToNormal(category)}`}
+          heading={`Most Popular Products in ${kebabToNormal(subCategory)}`}
         />
       </div>
       <SubCategories {...{ category }} />

@@ -6,15 +6,17 @@ import HoverDropdown from "@/components/dropdowns/HoverDropdown";
 
 export default function Header() {
   return (
-    <header className={"flex gap-5 bg-baby-blue p-5 text-black"}>
-      <div
-        className={
-          "relative flex aspect-[2] w-48 items-center justify-center italic text-zinc-500"
-        }
-      >
-        <Image src={logo} alt={"peek-a-review"} fill />
-      </div>
-      <span className={"my-auto text-2xl font-bold"}>Peek-A-Review</span>
+    <header className={"flex gap-5 bg-Aquamarine p-3 text-black"}>
+      <Link href={"/"} className={"flex"}>
+        <div
+          className={
+            "relative flex aspect-[2] w-32 items-center justify-center italic text-zinc-500"
+          }
+        >
+          <Image src={logo} alt={"peek-a-review"} fill />
+        </div>
+        <span className={"my-auto text-2xl font-bold"}>Peek-A-Review</span>
+      </Link>
       <NavigationMenu />
     </header>
   );
