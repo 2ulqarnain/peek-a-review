@@ -20,7 +20,7 @@ export default function ProductCard({ imageAlt }: props) {
             "ml-3 mt-auto font-pops text-3xl font-medium text-zinc-500"
           }
         >
-          $480
+          $470
         </span>
         <button className={"button ml-auto h-fit !bg-salmon/90 text-sm"}>
           Read More
