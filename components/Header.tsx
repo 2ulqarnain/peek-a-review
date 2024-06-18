@@ -3,10 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../public/peek-a-review-logo.png";
 import HoverDropdown from "@/components/dropdowns/HoverDropdown";
+import { getCategories } from "@/apis/get";
+import { normalToKebab } from "@/utils/functions";
 
 export default function Header() {
   return (
-    <header className={"flex gap-5 bg-Aquamarine p-3 text-black"}>
+    <header className={"flex gap-5 bg-Aquamarine text-black sm:p-3"}>
       <Link href={"/"} className={"flex"}>
         <div
           className={
@@ -15,32 +17,39 @@ export default function Header() {
         >
           <Image src={logo} alt={"peek-a-review"} fill />
         </div>
-        <span className={"my-auto text-2xl font-bold"}>Peek-A-Review</span>
+        <span className={"my-auto text-sm font-bold sm:text-2xl"}>
+          Peek-A-Review
+        </span>
       </Link>
       <NavigationMenu />
     </header>
   );
 }
 
-function NavigationMenu() {
+async function NavigationMenu() {
+  const categories = await getCategories();
+
   return (
     <div className={"m-auto flex gap-2 font-medium"}>
-      {categories.map((category) => (
+      {Object.keys(categories).map((category) => (
         <HoverDropdown
-          key={category.id}
+          key={category}
           triggerComponent={
-            <Link href={`/category/${category.id}`} className={"peer"}>
-              {category.text}
+            <Link
+              href={`/category/${normalToKebab(category)}`}
+              className={"peer"}
+            >
+              {category}
             </Link>
           }
         >
-          {category.subCategories.map((subCategory) => (
-            <li key={subCategory.id}>
+          {categories[category].map((subCategory) => (
+            <li key={subCategory}>
               <Link
-                href={`/category/${category.id}/${subCategory.id}`}
+                href={`/category/${normalToKebab(category)}/${normalToKebab(subCategory)}`}
                 className={"block"}
               >
-                {subCategory.text}
+                {subCategory}
               </Link>
             </li>
           ))}

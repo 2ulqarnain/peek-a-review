@@ -5,24 +5,24 @@ import ProductCard from "@/components/ProductCard";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="grid min-h-screen grid-cols-1 md:grid-cols-[auto,1fr] lg:grid-cols-2 [&>*]:px-5 md:[&>*]:px-16 xl:[&>*]:px-48">
       <div
         className={
-          "relative grid h-[calc(100vh-230px)] grid-cols-2 gap-16 p-24 px-48"
+          "relative col-span-full grid grid-cols-[subgrid] gap-5 p-16 lg:gap-16"
         }
       >
         <ProductCard imageAlt={""} />
         <OtherMostPopularProducts />
       </div>
-      <Description />
+      <Description className="col-span-full" />
       <Categories />
     </main>
   );
 }
 
-function Description() {
+function Description({ className }: { className?: string }) {
   return (
-    <div className={"mt-16 bg-freesia px-48 py-8"}>
+    <div className={"bg-freesia py-8 " + className}>
       <h2 className={"mb-4 text-3xl font-semibold"}>Description</h2>
       <p className={"mb-4"}>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
@@ -60,7 +60,7 @@ function Categories() {
   ];
 
   return (
-    <div className={"bg-baby-blue px-48 pt-5"}>
+    <div className={"col-span-full bg-baby-blue"}>
       <ul className={"flex flex-col gap-5"}>
         {categories.map((category) => (
           <li key={category.id}>
