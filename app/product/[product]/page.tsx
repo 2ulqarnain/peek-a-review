@@ -16,12 +16,16 @@ function OtherTopProducts() {
   return (
     <div
       className={
-        "grid grid-flow-row grid-cols-6 grid-rows-[max-content,max-content,max-content]"
+        "grid w-fit max-w-full grid-flow-row grid-cols-[repeat(6,max-content)] grid-rows-[max-content,max-content,max-content] gap-x-10 gap-y-2 overflow-x-auto"
       }
     >
       <div className={"col-start-1 row-start-1"}></div>
-      <div className={"col-start-1 row-start-2"}>Name</div>
-      <div className={"col-start-1 row-start-3"}>Price</div>
+      <div className={"col-start-1 row-start-2 font-semibold text-zinc-500"}>
+        Name
+      </div>
+      <div className={"col-start-1 row-start-3 font-semibold text-zinc-500"}>
+        Price
+      </div>
       {sampleData.map((product) => (
         <>
           <div className={"row-start-1"}>
@@ -32,8 +36,8 @@ function OtherTopProducts() {
               height={100}
             />
           </div>
-          <p>{product.name}</p>
-          <p>{product.price}</p>
+          <p className="row-start-2">{product.name}</p>
+          <p className="row-start-3">{product.price}</p>
         </>
       ))}
     </div>

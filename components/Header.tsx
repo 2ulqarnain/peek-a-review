@@ -21,7 +21,7 @@ export default function Header() {
           Peek-A-Review
         </span>
       </Link>
-      <NavigationMenu />
+      {/* <NavigationMenu /> */}
     </header>
   );
 }

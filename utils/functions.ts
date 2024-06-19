@@ -4,8 +4,8 @@ export const normalToKebab = (str: string) =>
 
 export async function fetchData(endpoint: string) {
   try {
-    return fetch(process.env.NEXT_PUBLIC_SERVER_URL + endpoint).then((res) =>
-      res.json(),
+    return await fetch(process.env.NEXT_PUBLIC_SERVER_URL + endpoint).then(
+      (res) => res.json(),
     );
   } catch (e) {
     console.error(e);

@@ -6,15 +6,17 @@ export default function Footer() {
   return (
     <div
       className={
-        "grid grid-flow-col grid-cols-3 grid-rows-2 justify-items-center bg-Aquamarine p-16"
+        "grid grid-cols-1 grid-rows-2 bg-Aquamarine p-4 lg:grid-flow-col lg:grid-cols-3 lg:justify-items-center lg:p-16"
       }
     >
-      <Logo />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim iste
-        omnis praesentium? Ad delectus, dolorem earum esse, eveniet facere id,
-        magni natus placeat porro quas repudiandae sed sit soluta tempore.
-      </p>
+      <div>
+        <Logo />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim iste
+          omnis praesentium? Ad delectus, dolorem earum esse, eveniet facere id,
+          magni natus placeat porro quas repudiandae sed sit soluta tempore.
+        </p>
+      </div>
       <ImportantLinks />
       <CategoriesLinks />
     </div>
@@ -35,7 +37,7 @@ function Logo() {
 
 function ImportantLinks() {
   return (
-    <div className={"row-span-full ml-auto py-5"}>
+    <div className={"py-5 lg:row-span-full lg:ml-auto"}>
       <h2 className={"font my-5 text-3xl font-semibold"}>Important Links</h2>
       <ul className={"flex flex-col"}>
         <li>
@@ -69,7 +71,7 @@ function ImportantLinks() {
 }
 function CategoriesLinks() {
   return (
-    <div className={"row-span-full py-5"}>
+    <div className={"py-5 lg:row-span-full"}>
       <h2 className={"my-5 text-3xl font-semibold"}>Categories</h2>
       <ul>
         <li>
