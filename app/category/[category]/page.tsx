@@ -15,9 +15,10 @@ export default function Home({ params: { category } }: props) {
           "relative grid h-[calc(100vh-230px)] grid-cols-2 gap-16 p-24 px-48"
         }
       >
-        <ProductCard imageAlt={""} />
+        <ProductCard id={56} />
         <OtherMostPopularProducts
           heading={`Most Popular Products in ${kebabToNormal(category)}`}
+          data={[]}
         />
       </div>
       <SubCategories {...{ category }} />

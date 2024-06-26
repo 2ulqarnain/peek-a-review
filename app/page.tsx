@@ -2,8 +2,16 @@ import Image from "next/image";
 import OtherMostPopularProducts from "@/app/components/OtherMostPopularProducts";
 import crib from "../public/baby-crib.webp";
 import ProductCard from "@/components/ProductCard";
+import { getCategoriesData, getFeaturedProduct } from "@/apis/get";
+import { categoryData_res } from "@/apis/types";
+import Link from "next/link";
+import { normalToKebab } from "@/utils/functions";
 
-export default function Home() {
+export default async function Home() {
+  const [data, categories] = await Promise.all([
+    getFeaturedProduct(),
+    getCategoriesData(),
+  ]);
   return (
     <main className="grid min-h-screen grid-cols-1 md:grid-cols-[auto,1fr] lg:grid-cols-2 [&>*]:px-5 md:[&>*]:px-16 xl:[&>*]:px-48">
       <div
@@ -11,11 +19,11 @@ export default function Home() {
           "relative col-span-full grid grid-cols-[subgrid] gap-5 p-16 lg:gap-16"
         }
       >
-        <ProductCard imageAlt={""} />
-        <OtherMostPopularProducts />
+        <ProductCard {...data.product} />
+        <OtherMostPopularProducts data={data.products} />
       </div>
       <Description className="col-span-full" />
-      <Categories />
+      <Categories data={categories} />
     </main>
   );
 }
@@ -37,39 +45,19 @@ function Description({ className }: { className?: string }) {
   );
 }
 
-function Categories() {
-  const categories = [
-    {
-      name: "Strollers",
-      id: "strollers",
-      subCategories: [
-        { name: "Everyday Strollers", id: "everyday-strollers", img_url: "#" },
-        { name: "Everyday Strollers", id: "everyday-strollers", img_url: "#" },
-        { name: "Everyday Strollers", id: "everyday-strollers", img_url: "#" },
-      ],
-    },
-    {
-      name: "Travel",
-      id: "travel",
-      subCategories: [
-        { name: "Travel Strollers", id: "travel-strollers", img_url: "#" },
-        { name: "Travel Strollers", id: "travel-strollers", img_url: "#" },
-        { name: "Travel Strollers", id: "travel-strollers", img_url: "#" },
-      ],
-    },
-  ];
-
+function Categories({ data }: { data: categoryData_res }) {
   return (
     <div className={"col-span-full bg-baby-blue"}>
       <ul className={"flex flex-col gap-5"}>
-        {categories.map((category) => (
-          <li key={category.id}>
+        {Object.entries(data).map(([categoryName, subCategories]) => (
+          <li key={categoryName}>
             <div className={"group/category rounded-xl py-5"}>
-              <h2 className={"text-3xl font-semibold"}>{category.name}</h2>
+              <h2 className={"text-3xl font-semibold"}>{categoryName}</h2>
               <ul className={"mt-5 grid grid-cols-3 justify-center gap-5"}>
-                {category.subCategories.map((subCategory) => (
+                {subCategories.map((subCategory) => (
                   <li key={subCategory.id}>
-                    <button
+                    <Link
+                      href={`/category/${normalToKebab(categoryName)}/${normalToKebab(subCategory.subcategory_name)}`}
                       className={
                         "group h-full w-full transition-transform hover:scale-105"
                       }
@@ -80,7 +68,7 @@ function Categories() {
                         }
                       >
                         <Image
-                          src={crib}
+                          src={subCategory.image_url}
                           alt={"product image"}
                           fill
                           className={
@@ -93,9 +81,9 @@ function Categories() {
                           "text-center font-roboto-slab text-xl font-medium transition-transform duration-200 ease-in group-hover:scale-110"
                         }
                       >
-                        {subCategory.name}
+                        {subCategory.subcategory_name}
                       </p>
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>

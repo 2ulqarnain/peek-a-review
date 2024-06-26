@@ -21,17 +21,18 @@ export default function Header() {
           Peek-A-Review
         </span>
       </Link>
-      {/* <NavigationMenu /> */}
+      <NavigationMenu />
     </header>
   );
 }
 
 async function NavigationMenu() {
   const categories = await getCategories();
+  console.log({ categories });
 
   return (
     <div className={"m-auto flex gap-2 font-medium"}>
-      {Object.keys(categories).map((category) => (
+      {Object.keys(categories ?? {}).map((category) => (
         <HoverDropdown
           key={category}
           triggerComponent={
