@@ -30,7 +30,7 @@ function ProductInfo({ name, price, image_url, affiliate_link }: product_res) {
           alt={name ?? "peek a review product"}
           width={500}
           height={300}
-          className="max-w-auto xl:max-w-auto sm:min-w-[450px] sm:max-w-[450px]"
+          className="max-w-auto xl:max-w-auto rounded-xl bg-baby-blue py-3 sm:min-w-[450px] sm:max-w-[450px]"
         />
       )}
       <div className={"flex flex-col"}>
