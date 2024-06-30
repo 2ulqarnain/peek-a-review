@@ -44,14 +44,16 @@ export default function ProductCard({
         </span>
         <div className="basis-full">
           <span>{price}</span>
-          <a
-            href={affiliate_link}
-            target="_blank"
-            referrerPolicy="no-referrer"
-            className="button rounded-xl !bg-baby-blue-darker !p-2 !px-3 text-white hover:text-black"
-          >
-            {affiliate_site}
-          </a>
+          {affiliate_link && (
+            <a
+              href={affiliate_link}
+              target="_blank"
+              referrerPolicy="no-referrer"
+              className="button rounded-xl !bg-baby-blue-darker !p-2 !px-3 text-white hover:text-black"
+            >
+              {affiliate_site}
+            </a>
+          )}
         </div>
 
         {!detailed && (

@@ -38,3 +38,16 @@ export type product_res = {
   category?: string;
   sub_category?: string;
 };
+
+export type similarProducts_res = Array<{
+  id: number;
+  name: string;
+  price: string;
+  image_url: string;
+  affiliate_link: string;
+  affiliate_site: string;
+  rating: any;
+  featured_sites: string;
+  category: string;
+  sub_category: string;
+}>;

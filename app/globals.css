@@ -16,3 +16,7 @@ body{
 .button {
     @apply bg-salmon rounded-full p-1 px-4 hover:scale-110 transition-[transform,background] hover:!bg-baby-blue hover:border-Aquamarine border border-transparent
 }
+
+.button:active{
+    @apply scale-90
+}

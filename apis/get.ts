@@ -4,6 +4,7 @@ import {
   featuredProducts_res,
   getCategories_res,
   product_res,
+  similarProducts_res,
 } from "@/apis/types";
 
 export const getCategories = async (): Promise<getCategories_res> => {
@@ -22,4 +23,10 @@ export const getProductById = async (
   productID: number | string,
 ): Promise<product_res> => {
   return fetchData(`/product/${productID}`);
+};
+
+export const getSimilarProductsByProduct = async (
+  productID: number | string,
+): Promise<similarProducts_res> => {
+  return fetchData(`/api/products/${productID}/similar/`);
 };
