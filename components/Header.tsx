@@ -28,10 +28,10 @@ export default function Header() {
 
 async function NavigationMenu() {
   const categories = await getCategories();
-  console.log({ categories });
+  // console.log({ categories });
 
   return (
-    <div className={"m-auto flex gap-2 font-medium"}>
+    <div className={"m-auto flex justify-end gap-2 !text-sm font-medium"}>
       {Object.keys(categories ?? {}).map((category) => (
         <HoverDropdown
           key={category}

@@ -2,8 +2,8 @@ import Image from "next/image";
 import { getProductById, getSimilarProductsByProduct } from "@/apis/get";
 import { product_res, similarProducts_res } from "@/apis/types";
 import { ArrowUpRight, Star } from "lucide-react";
-import { sampleData } from "./sampleData";
 import placeholderImage from "@/public/placeholder-pattern.jpg";
+import Link from "next/link";
 
 export default async function Page({
   params: { productID },
@@ -12,18 +12,26 @@ export default async function Page({
 }) {
   const product = await getProductById(productID);
   const similarProducts = await getSimilarProductsByProduct(productID);
-  console.log({ similarProducts });
+  // console.log({ similarProducts });
   return (
-    <main className={"flex flex-col gap-5 p-16 px-5 lg:px-16 xl:px-52"}>
+    <main
+      className={"flex flex-col gap-5 bg-baby-blue p-16 px-5 lg:px-16 xl:px-52"}
+    >
       <ProductInfo {...product} />
       <OtherTopProducts data={similarProducts} />
     </main>
   );
 }
 
-function ProductInfo({ name, price, image_url, affiliate_link }: product_res) {
+function ProductInfo({
+  name,
+  price,
+  image_url,
+  affiliate_link,
+  rating,
+}: product_res) {
   return (
-    <div className={"grid h-fit grid-cols-[auto,1fr] gap-5"}>
+    <div className={"grid h-fit gap-5 lg:grid-cols-[auto,1fr]"}>
       {image_url && (
         <Image
           src={image_url}
@@ -37,15 +45,15 @@ function ProductInfo({ name, price, image_url, affiliate_link }: product_res) {
         <div className={"font-pops text-4xl font-medium"}>
           {name ?? "Thule Spring"}
         </div>
-        <div className="my-2 text-lg text-zinc-600 lg:text-2xl">{price}</div>
+        <div className="my-2 font-pops text-lg text-zinc-600 lg:text-2xl">
+          {price}
+        </div>
         <div className="flex">
           <label>Rating:</label>
-          <span className="align-end ml-2 inline-flex items-end text-zinc-400">
-            <Star className="fill-salmon stroke-salmon" />
-            <Star className="fill-salmon stroke-salmon" />
-            <Star className="fill-salmon stroke-salmon" />
-            <Star />
-            <Star />
+          <span className="align-end inline-flex items-end text-zinc-400">
+            {new Array(5).fill(null).map((_, i) => (
+              <Star className={i < rating ? "fill-salmon stroke-salmon" : ""} />
+            ))}
           </span>
         </div>
         {affiliate_link && (
@@ -85,28 +93,55 @@ function OtherTopProducts({ data }: { data: similarProducts_res }) {
         <div className={"col-start-1 row-start-4 font-semibold text-zinc-500"}>
           Ratings
         </div>
+        <div className={"col-start-1 row-start-5 font-semibold text-zinc-500"}>
+          Affiliate Sites
+        </div>
+        <div className={"col-start-1 row-start-6 font-semibold text-zinc-500"}>
+          Featured Sites
+        </div>
         {data?.map((product) => (
           <>
-            <div className={"row-start-1"}>
+            <div
+              className={
+                "relative row-start-1 h-[150px] w-full overflow-hidden rounded-lg bg-baby-blue"
+              }
+            >
               <Image
                 src={product.image_url ?? placeholderImage}
                 alt={product.name}
-                width={200}
-                height={200}
-                className="rounded-lg bg-baby-blue p-2"
+                layout="fill"
               />
             </div>
-            <p className="row-start-2">{product.name}</p>
-            <p className="row-start-3">{product.price}</p>
+            <Link
+              href={`/product/${product.id}`}
+              className="row-start-2 font-pops font-medium text-Aquamarine-darker hover:underline"
+            >
+              {product.name}
+            </Link>
+            <p className="row-start-3 font-pops text-xl">{product.price}</p>
             <p className="row-start-4">
               <span className="align-end inline-flex items-end text-zinc-400">
-                <Star className="fill-salmon stroke-salmon" />
-                <Star className="fill-salmon stroke-salmon" />
-                <Star className="fill-salmon stroke-salmon" />
-                <Star />
-                <Star />
+                {new Array(5).fill(null).map((_, i) => (
+                  <Star
+                    className={
+                      i < product.rating ? "fill-salmon stroke-salmon" : ""
+                    }
+                  />
+                ))}
               </span>
             </p>
+            <a
+              href={product.affiliate_link}
+              className="hover:bg-freeschia row-start-5 w-fit rounded-xl bg-baby-blue-darker p-1 px-5 text-white hover:bg-Aquamarine-darker hover:underline"
+            >
+              {product.affiliate_site}
+            </a>
+            <a
+              href={product.featured_sites}
+              className="row-start-6 max-w-[20ch] truncate hover:text-baby-blue-darker hover:underline"
+            >
+              {product.featured_sites}
+            </a>
           </>
         ))}
       </div>
