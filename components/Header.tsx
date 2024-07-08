@@ -1,14 +1,19 @@
-import { categories } from "@/app/content/categories";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../public/peek-a-review-logo.png";
 import HoverDropdown from "@/components/dropdowns/HoverDropdown";
 import { getCategories } from "@/apis/get";
 import { normalToKebab } from "@/utils/functions";
+import MobileNavigationMenu from "./navbar/mobileNavbar";
+import { getCategories_res } from "@/apis/types";
 
-export default function Header() {
+export default async function Header() {
+  const categories = await getCategories();
+
   return (
-    <header className={"flex gap-5 bg-Aquamarine text-black sm:p-3"}>
+    <header
+      className={"flex items-center gap-5 bg-Aquamarine text-black sm:p-3"}
+    >
       <Link href={"/"} className={"flex"}>
         <div
           className={
@@ -21,17 +26,23 @@ export default function Header() {
           Peek-A-Review
         </span>
       </Link>
-      <NavigationMenu />
+      <NavigationMenu categories={categories} />
+      <MobileNavigationMenu categories={categories} />
     </header>
   );
 }
 
-async function NavigationMenu() {
-  const categories = await getCategories();
+async function NavigationMenu({
+  categories,
+}: {
+  categories: getCategories_res;
+}) {
   // console.log({ categories });
 
   return (
-    <div className={"m-auto flex justify-end gap-2 !text-sm font-medium"}>
+    <div
+      className={"m-auto hidden justify-end gap-2 !text-sm font-medium lg:flex"}
+    >
       {Object.keys(categories ?? {}).map((category) => (
         <HoverDropdown
           key={category}
