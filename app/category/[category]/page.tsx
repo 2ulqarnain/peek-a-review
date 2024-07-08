@@ -12,7 +12,7 @@ export default function Home({ params: { category } }: props) {
     <main className="flex min-h-screen flex-col">
       <div
         className={
-          "relative grid h-[calc(100vh-230px)] grid-cols-2 gap-16 p-24 px-48"
+          "relative grid h-[calc(100vh-230px)] grid-cols-1 gap-16 px-8 py-24 lg:grid-cols-2 lg:px-48"
         }
       >
         <ProductCard id={56} />
@@ -55,8 +55,8 @@ function SubCategories({ category }: { category: string }) {
   ];
 
   return (
-    <div className={"bg-baby-blue px-48 pt-5"}>
-      <ul className={"grid grid-cols-3 gap-x-10"}>
+    <div className={"bg-baby-blue px-8 pt-5 lg:px-48"}>
+      <ul className={"grid grid-cols-1 gap-x-10 lg:grid-cols-3"}>
         {subCategory.map((subCategory) => (
           <li>
             <Card

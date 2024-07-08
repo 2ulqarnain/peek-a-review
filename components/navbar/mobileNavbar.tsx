@@ -2,6 +2,7 @@
 
 import { getCategories_res } from "@/apis/types";
 import HoverDropdown from "@/components/dropdowns/HoverDropdown";
+import { cn } from "@/lib/utils";
 import { normalToKebab } from "@/utils/functions";
 import { Cross, CrossIcon, MenuIcon, X } from "lucide-react";
 import Link from "next/link";
@@ -29,7 +30,12 @@ export default function MobileNavigationMenu({
   }, []);
 
   return (
-    <div className="absolute right-6 top-6 z-20 flex h-fit flex-col lg:hidden">
+    <div
+      className={cn(
+        "absolute right-6 z-20 flex h-fit flex-col lg:hidden",
+        isMenuOpen ? "top-4" : "top-1/2 -translate-y-1/2",
+      )}
+    >
       <button
         className="ml-auto w-fit p-2 align-middle"
         onClick={() => setIsMenuOpen((prev) => !prev)}
@@ -40,7 +46,7 @@ export default function MobileNavigationMenu({
         <div
           ref={menuRef}
           className={
-            "m-auto flex w-max flex-col justify-end gap-2 rounded-xl bg-white !text-sm font-medium"
+            "m-auto flex w-max flex-col justify-end gap-2 rounded-xl bg-white !text-sm font-medium shadow-2xl"
           }
         >
           {Object.keys(categories ?? {}).map((category) => (

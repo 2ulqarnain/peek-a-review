@@ -32,12 +32,11 @@ function Description({ className }: { className?: string }) {
     <div className={"bg-freesia py-8 " + className}>
       <h2 className={"mb-4 text-3xl font-semibold"}>Description</h2>
       <p className={"mb-4"}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-        accusantium amet assumenda consequatur culpa exercitationem harum hic
-        inventore itaque, iure, laboriosam, laborum maxime necessitatibus
-        provident quas reprehenderit tempore unde velit! Lorem ipsum dolor sit
-        amet, consectetur adipisicing elit. Accusamus accusantium amet assumenda
-        consequatur culpa exercitationem harum hic inventore itaque.
+        Welcome to Peekareview, your trusted source for the best baby products.
+        We showcase top-rated affiliate items to help you find the perfect
+        essentials for your little one. Explore our curated collection for a
+        hassle-free shopping experience, make informed choices with ease, and
+        ensure your baby&apos;s comfort and safety with every purchase!
       </p>
       <button className={"button"}>Learn More</button>
     </div>

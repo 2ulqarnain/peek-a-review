@@ -9,7 +9,7 @@ export default function OtherMostPopularProducts({ heading, data }: props) {
   return (
     <div>
       <h2 className={"text-3xl font-medium capitalize"}>
-        {heading ?? "Most Popular Products"}
+        {decodeURIComponent(heading ?? "Most Popular Products")}
       </h2>
       <div className={"mb-10 mt-5 h-1 w-full rounded-full bg-Aquamarine"}></div>
       <ul className={"flex flex-col gap-2"}>

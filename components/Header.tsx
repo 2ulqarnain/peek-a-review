@@ -12,7 +12,9 @@ export default async function Header() {
 
   return (
     <header
-      className={"flex items-center gap-5 bg-Aquamarine text-black sm:p-3"}
+      className={
+        "relative flex items-center gap-5 bg-Aquamarine text-black sm:p-3"
+      }
     >
       <Link href={"/"} className={"flex"}>
         <div
