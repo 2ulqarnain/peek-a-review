@@ -12,9 +12,10 @@ export default function Footer() {
       <div>
         <Logo />
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim iste
-          omnis praesentium? Ad delectus, dolorem earum esse, eveniet facere id,
-          magni natus placeat porro quas repudiandae sed sit soluta tempore.
+          Peekareview is your trusted source for the best baby products. Explore
+          our top-rated affiliate items for a hassle-free shopping experience.
+          Make informed choices with ease and ensure your baby’s comfort and
+          safety with every purchase.
         </p>
       </div>
       <ImportantLinks />
