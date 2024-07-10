@@ -1,6 +1,7 @@
 import Image from "next/image";
 import logo from "@/public/peek-a-review-logo.png";
 import Link from "next/link";
+import { getCategories } from "@/apis/get";
 
 export default function Footer() {
   return (
@@ -70,46 +71,24 @@ function ImportantLinks() {
     </div>
   );
 }
-function CategoriesLinks() {
+async function CategoriesLinks() {
+  const categories = await getCategories();
   return (
-    <div className={"py-5 lg:row-span-full"}>
+    <div className={"py-5 lg:row-span-full "}>
       <h2 className={"my-5 text-3xl font-semibold"}>Categories</h2>
-      <ul>
-        <li>
-          <Link href={"#"} className={"styled-link"}>
-            Link 1
-          </Link>
-        </li>
-        <li>
-          <Link href={"#"} className={"styled-link"}>
-            Link 2
-          </Link>
-        </li>
-        <li>
-          <Link href={"#"} className={"styled-link"}>
-            Link 3
-          </Link>
-        </li>
-        <li>
-          <Link href={"#"} className={"styled-link"}>
-            Link 4
-          </Link>
-        </li>
-        <li>
-          <Link href={"#"} className={"styled-link"}>
-            Link 5
-          </Link>
-        </li>
-        <li>
-          <Link href={"#"} className={"styled-link"}>
-            Link 6
-          </Link>
-        </li>
-        <li>
-          <Link href={"#"} className={"styled-link"}>
-            Link 7
-          </Link>
-        </li>
+      <ul className="max-w-[30ch] hover:text-zinc-700">
+        {Object.keys(categories).map((category) => (
+          <li>
+            <Link
+              href={`/category/${category}/`}
+              className={
+                "w-[10ch] text-wrap decoration-salmon decoration-2 hover:text-black hover:underline"
+              }
+            >
+              {category}
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
