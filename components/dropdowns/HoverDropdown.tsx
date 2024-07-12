@@ -34,7 +34,7 @@ export default function HoverDropdown({
       {/*Dropdown menu*/}
       <div
         className={cn(
-          "absolute z-10 hidden w-max min-w-40 divide-y divide-gray-100 overflow-hidden rounded-lg bg-white font-normal shadow-2xl hover:block group-last:right-0 peer-hover:block",
+          "absolute z-20 hidden w-max min-w-40 divide-y divide-gray-100 overflow-hidden border border-Aquamarine bg-baby-blue-darker font-normal text-white shadow-2xl hover:block group-last:right-0 peer-hover:block",
           verticalMenu && "left-0 top-0 -translate-x-full",
         )}
       >

@@ -1,6 +1,4 @@
 import Image from "next/image";
-import product from "../public/product.webp";
-import Link from "next/link";
 import { product_res } from "@/apis/types";
 import { ArrowUpRight } from "lucide-react";
 
@@ -20,13 +18,10 @@ type props = {
 };
 
 export default function ProductCard({
-  id,
   name,
   price,
   affiliate_link,
-  affiliate_site,
   image_url,
-  detailed = false,
 }: product_res & { detailed?: boolean }) {
   return (
     <div className={"flex h-fit flex-col gap-5"}>
@@ -36,7 +31,7 @@ export default function ProductCard({
           alt={name ?? "peek a review product"}
           width={500}
           height={300}
-          className="max-w-auto xl:max-w-auto rounded-xl bg-white sm:min-w-[450px] sm:max-w-[450px]"
+          className="max-w-auto xl:max-w-auto rounded-xl border border-black bg-white sm:min-w-[450px] sm:max-w-[450px]"
         />
       )}
       <span className={"font-pops text-4xl font-medium"}>

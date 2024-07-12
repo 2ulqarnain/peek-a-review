@@ -1,7 +1,7 @@
 .dropdown li > * {
-    @apply px-4 py-2 hover:bg-salmon
+    @apply px-4 py-2 hover:bg-Aquamarine hover:text-black border border-Aquamarine
 }
 
 .dropdown > *:first-child {
-    @apply hover:bg-salmon focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-2 py-2.5 text-center inline-flex items-center
+    @apply hover:bg-baby-blue-darker hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium px-2 py-2.5 text-center inline-flex items-center
 }

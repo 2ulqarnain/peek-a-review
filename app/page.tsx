@@ -12,16 +12,16 @@ export default async function Home() {
     getCategoriesData(),
   ]);
   return (
-    <main className="grid min-h-screen grid-cols-1 md:grid-cols-[auto,1fr] lg:grid-cols-2 [&>*]:px-5 md:[&>*]:px-16 xl:[&>*]:px-48">
+    <main className="grid min-h-screen grid-cols-1 px-5 md:grid-cols-[auto,1fr] md:px-16 lg:grid-cols-2 xl:px-48">
       <div
         className={
-          "relative col-span-full grid grid-cols-[subgrid] gap-5 bg-baby-blue p-16 lg:gap-16"
+          "relative col-span-full my-8 grid grid-cols-[subgrid] gap-5 bg-baby-blue p-16 py-8 lg:gap-16"
         }
       >
         <ProductCard {...data.product} />
         <OtherMostPopularProducts data={data.products} />
       </div>
-      <Description className="col-span-full" />
+      <Description className="col-span-full mb-8 px-16" />
       <Categories data={categories} />
     </main>
   );
@@ -29,7 +29,7 @@ export default async function Home() {
 
 function Description({ className }: { className?: string }) {
   return (
-    <div className={"bg-freesia py-8 " + className}>
+    <div className={"bg-baby-blue-darker py-8 text-white " + className}>
       <h2 className={"mb-4 text-3xl font-semibold"}>Description</h2>
       <p className={"mb-4"}>
         Welcome to Peekareview, your trusted source for the best baby products.
@@ -45,7 +45,7 @@ function Description({ className }: { className?: string }) {
 
 function Categories({ data }: { data: categoryData_res }) {
   return (
-    <div className={"col-span-full bg-baby-blue"}>
+    <div className={"col-span-full bg-baby-blue px-16"}>
       <ul className={"flex flex-col gap-5"}>
         {Object.entries(data).map(([categoryName, subCategories]) => (
           <li key={categoryName}>
@@ -58,7 +58,11 @@ function Categories({ data }: { data: categoryData_res }) {
                   {categoryName}
                 </Link>
               </h2>
-              <ul className={"mt-5 grid grid-cols-3 justify-center gap-5"}>
+              <ul
+                className={
+                  "mt-5 grid grid-cols-1 justify-center gap-5 sm:grid-cols-3"
+                }
+              >
                 {subCategories.map((subCategory) => (
                   <li key={subCategory.id}>
                     <Link
@@ -69,7 +73,7 @@ function Categories({ data }: { data: categoryData_res }) {
                     >
                       <div
                         className={
-                          "bg- relative flex aspect-[1.3] flex-col overflow-hidden rounded-xl bg-[#f9f9f9]"
+                          " relative flex aspect-[1.3] flex-col overflow-hidden rounded-xl border border-black bg-[#f9f9f9]"
                         }
                       >
                         <Image

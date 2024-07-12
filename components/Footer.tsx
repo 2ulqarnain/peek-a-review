@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <div
       className={
-        "grid grid-cols-1 grid-rows-2 bg-Aquamarine p-4 lg:grid-flow-col lg:grid-cols-3 lg:justify-items-center lg:p-16"
+        "grid grid-cols-1 grid-rows-[auto,auto] bg-baby-blue-darker p-4 text-white lg:grid-flow-col lg:grid-cols-3 lg:justify-items-center lg:p-16"
       }
     >
       <div>
@@ -19,7 +19,7 @@ export default function Footer() {
           safety with every purchase.
         </p>
       </div>
-      <ImportantLinks />
+      {/* <ImportantLinks /> */}
       <CategoriesLinks />
     </div>
   );
@@ -74,7 +74,7 @@ function ImportantLinks() {
 async function CategoriesLinks() {
   const categories = await getCategories();
   return (
-    <div className={"py-5 lg:row-span-full "}>
+    <div className={"col-start-3 py-5 lg:row-span-full "}>
       <h2 className={"my-5 text-3xl font-semibold"}>Categories</h2>
       <ul className="max-w-[30ch] hover:text-zinc-700">
         {Object.keys(categories).map((category) => (

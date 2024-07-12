@@ -39,7 +39,9 @@ export type product_res = {
   sub_category?: string;
 };
 
-export type similarProducts_res = Array<{
+export type similarProducts_res = Array<OtherTopProduct>;
+
+export type OtherTopProduct = {
   id: number;
   name: string;
   price: string;
@@ -50,4 +52,4 @@ export type similarProducts_res = Array<{
   featured_sites: string;
   category: string;
   sub_category: string;
-}>;
+};

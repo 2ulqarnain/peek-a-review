@@ -11,25 +11,25 @@ export default async function Header() {
   const categories = await getCategories();
 
   return (
-    <header
-      className={
-        "relative flex items-center gap-5 bg-Aquamarine text-black sm:p-3"
-      }
-    >
-      <Link href={"/"} className={"flex"}>
-        <div
-          className={
-            "relative flex aspect-[2] w-32 items-center justify-center italic text-zinc-500"
-          }
-        >
-          <Image src={logo} alt={"peek-a-review"} fill />
-        </div>
-        <span className={"my-auto text-sm font-bold sm:text-2xl"}>
-          Peek-A-Review
-        </span>
-      </Link>
-      <NavigationMenu categories={categories} />
-      <MobileNavigationMenu categories={categories} />
+    <header className={"relative text-white"}>
+      <div className=" bg-baby-blue-darker">
+        <Link href={"/"} className={"flex"}>
+          <div
+            className={
+              "relative flex aspect-[2] w-32 items-center justify-center italic text-zinc-500"
+            }
+          >
+            <Image src={logo} alt={"peek-a-review"} fill />
+          </div>
+          <span className={"my-auto text-sm font-bold sm:text-2xl"}>
+            Peek-A-Review
+          </span>
+        </Link>
+      </div>
+      <div className="bg-Aquamarine text-black">
+        <NavigationMenu categories={categories} />
+        <MobileNavigationMenu categories={categories} />
+      </div>
     </header>
   );
 }
