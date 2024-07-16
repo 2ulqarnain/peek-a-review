@@ -12,7 +12,8 @@ export default async function Header() {
 
   return (
     <header className={"relative text-white"}>
-      <div className=" bg-baby-blue-darker">
+      <div className=" flex items-center bg-baby-blue-darker pl-5">
+        <MobileNavigationMenu categories={categories} />
         <Link href={"/"} className={"flex"}>
           <div
             className={
@@ -28,7 +29,6 @@ export default async function Header() {
       </div>
       <div className="bg-Aquamarine text-black">
         <NavigationMenu categories={categories} />
-        <MobileNavigationMenu categories={categories} />
       </div>
     </header>
   );

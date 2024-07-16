@@ -1,81 +1,91 @@
 "use client";
 
 import { getCategories_res } from "@/apis/types";
-import HoverDropdown from "@/components/dropdowns/HoverDropdown";
-import { cn } from "@/lib/utils";
 import { normalToKebab } from "@/utils/functions";
-import { Cross, CrossIcon, MenuIcon, X } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { NavItems, SideNav } from "react-swiper-sidenav";
 
 export default function MobileNavigationMenu({
   categories,
 }: {
   categories: getCategories_res;
 }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const navbarItems: NavItems = {
+    name: "Categories",
+    childrenItems: Object.keys(categories).map((category) => ({
+      name: category,
+      childrenItems: [
+        {
+          itemProps: {
+            to: `/category/${normalToKebab(category)}`,
+            label: `All in ${category}`,
+          },
+        },
+        ...categories[category].map((subCategory) => ({
+          itemProps: {
+            to: `/category/${normalToKebab(category)}/${normalToKebab(subCategory)}`,
+            label: subCategory,
+          },
+        })),
+      ],
+    })),
+  };
 
   return (
-    <div
-      className={cn(
-        "absolute right-6 z-20 flex h-fit flex-col lg:hidden",
-        isMenuOpen ? "top-4" : "top-1/2 -translate-y-1/2",
-      )}
-    >
-      <button
-        className="ml-auto w-fit p-2 align-middle"
-        onClick={() => setIsMenuOpen((prev) => !prev)}
-      >
-        {isMenuOpen ? <X /> : <MenuIcon />}
+    <div className="h-7 text-black lg:hidden">
+      <button className="text-white" onClick={() => setIsNavbarOpen(true)}>
+        {isNavbarOpen ? <CrossIcon /> : <HamburgerIcon />}
       </button>
-      {isMenuOpen && (
-        <div
-          ref={menuRef}
-          className={
-            "m-auto flex w-max flex-col justify-end gap-2 rounded-xl bg-white !text-sm font-medium shadow-2xl"
-          }
-        >
-          {Object.keys(categories ?? {}).map((category) => (
-            <HoverDropdown
-              key={category}
-              verticalMenu
-              triggerComponent={
-                <Link
-                  href={`/category/${normalToKebab(category)}`}
-                  className={"peer"}
-                >
-                  {category}
-                </Link>
-              }
-            >
-              {categories[category].map((subCategory) => (
-                <li key={subCategory}>
-                  <Link
-                    href={`/category/${normalToKebab(category)}/${normalToKebab(subCategory)}`}
-                    className={"block"}
-                  >
-                    {subCategory}
-                  </Link>
-                </li>
-              ))}
-            </HoverDropdown>
-          ))}
-        </div>
-      )}
+      <SideNav
+        navItems={navbarItems}
+        open={isNavbarOpen}
+        onClose={() => setIsNavbarOpen(false)}
+        renderLink={CustomLink}
+      />
     </div>
   );
 }
+
+const CustomLink = ({ to, label }: { to: string; label: string }) => (
+  <Link href={to}>{label}</Link>
+);
+
+const HamburgerIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={3}
+      stroke="currentColor"
+      className="size-8"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+      />
+    </svg>
+  );
+};
+
+const CrossIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={3}
+      stroke="currentColor"
+      className="size-8"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6 18 18 6M6 6l12 12"
+      />
+    </svg>
+  );
+};

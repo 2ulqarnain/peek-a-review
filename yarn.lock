@@ -778,6 +778,11 @@ react-dom@^18:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-swiper-sidenav@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/react-swiper-sidenav/-/react-swiper-sidenav-1.1.9.tgz#ad3dd3a6ebfe6fc2dc5b62f85755d9cc7c555fd8"
+  integrity sha512-ctf+0qS0QhRJvaV8p3C8AXbQkP9YDWhnToyUjwiVusaqHVJTe6dpif/YSZf7W5olCN7tDYGwqKdFsYGiJm+KtA==
+
 react@^18:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
