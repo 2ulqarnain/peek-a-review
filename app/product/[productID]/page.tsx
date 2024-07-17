@@ -38,7 +38,7 @@ function ProductInfo({
           alt={name ?? "peek a review product"}
           width={500}
           height={300}
-          className="max-w-auto xl:max-w-auto rounded-xl border border-zinc-400 bg-baby-blue py-3 sm:min-w-[450px] sm:max-w-[450px]"
+          className="max-w-auto xl:max-w-auto rounded-xl border border-zinc-400 bg-white py-3 sm:min-w-[450px] sm:max-w-[450px]"
         />
       )}
       <div className={"flex flex-col"}>
@@ -51,7 +51,7 @@ function ProductInfo({
         <div className="flex">
           <label>Rating:</label>
           <span className="align-end inline-flex items-end text-zinc-400">
-            {rating === null
+            {!rating
               ? [
                   new Array(4).fill(
                     <Star className="fill-salmon stroke-salmon" />,
@@ -95,37 +95,43 @@ function OtherTopProducts({ data }: { data: similarProducts_res }) {
       <h2 className="w-fit rounded-tl-xl border-l-2 border-t-2 border-salmon p-2 text-2xl font-semibold">
         Other Similar Products
       </h2>
-      <div className={"mt-5 flex w-fit max-w-full overflow-x-auto"}>
-        <div className="grid grid-cols-[200px] grid-rows-[150px,repeat(5,50px)] border border-b-0 border-zinc-400 border-l-baby-blue border-t-baby-blue [&>*]:flex [&>*]:items-center [&>*]:border-b [&>*]:border-l [&>*]:border-zinc-400 [&>*]:pl-2">
-          <div className={"col-start-1 row-start-1 !border-l-baby-blue"}></div>
-          <div
-            className={"col-start-1 row-start-2 font-semibold text-zinc-500"}
-          >
-            Name
+      {data.length ? (
+        <div className={"mt-5 flex w-fit max-w-full overflow-x-auto"}>
+          <div className="grid grid-cols-[200px] grid-rows-[150px,repeat(5,50px)] border border-b-0 border-zinc-400 border-l-baby-blue border-t-baby-blue [&>*]:flex [&>*]:items-center [&>*]:border-b [&>*]:border-l [&>*]:border-zinc-400 [&>*]:pl-2">
+            <div
+              className={"col-start-1 row-start-1 !border-l-baby-blue"}
+            ></div>
+            <div
+              className={"col-start-1 row-start-2 font-semibold text-zinc-500"}
+            >
+              Name
+            </div>
+            <div
+              className={"col-start-1 row-start-3 font-semibold text-zinc-500"}
+            >
+              Price
+            </div>
+            <div
+              className={"col-start-1 row-start-4 font-semibold text-zinc-500"}
+            >
+              Ratings
+            </div>
+            <div
+              className={"col-start-1 row-start-5 font-semibold text-zinc-500"}
+            >
+              Affiliate Sites
+            </div>
+            <div
+              className={"col-start-1 row-start-6 font-semibold text-zinc-500"}
+            >
+              Featured Sites
+            </div>
           </div>
-          <div
-            className={"col-start-1 row-start-3 font-semibold text-zinc-500"}
-          >
-            Price
-          </div>
-          <div
-            className={"col-start-1 row-start-4 font-semibold text-zinc-500"}
-          >
-            Ratings
-          </div>
-          <div
-            className={"col-start-1 row-start-5 font-semibold text-zinc-500"}
-          >
-            Affiliate Sites
-          </div>
-          <div
-            className={"col-start-1 row-start-6 font-semibold text-zinc-500"}
-          >
-            Featured Sites
-          </div>
+          {data?.map((product) => <OtherTopProductCard product={product} />)}
         </div>
-        {data?.map((product) => <OtherTopProductCard product={product} />)}
-      </div>
+      ) : (
+        <div className="mt-5 text-xl text-zinc-400">No Products</div>
+      )}
     </div>
   );
 }
@@ -135,7 +141,7 @@ function OtherTopProductCard({ product }: { product: Product }) {
     <div className="grid grid-cols-[200px] grid-rows-[150px,repeat(5,50px)] border border-b-0 border-l-0 border-zinc-400 [&>*]:flex [&>*]:items-center [&>*]:justify-center [&>*]:border-b [&>*]:border-zinc-400">
       <div
         className={
-          "relative row-start-1 h-full w-full overflow-hidden bg-baby-blue"
+          "relative row-start-1 h-full w-full overflow-hidden bg-white"
         }
       >
         <Image
@@ -153,7 +159,7 @@ function OtherTopProductCard({ product }: { product: Product }) {
       <p className="row-start-3 font-pops text-xl">{product.price}</p>
       <p className="row-start-4">
         <span className="align-end inline-flex items-end text-zinc-400">
-          {product.rating === null
+          {!product.rating
             ? [
                 ...new Array(4).fill(
                   <Star className="fill-salmon stroke-salmon" />,
