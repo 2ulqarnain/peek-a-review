@@ -96,8 +96,8 @@ function OtherTopProducts({ data }: { data: similarProducts_res }) {
         Other Similar Products
       </h2>
       <div className={"mt-5 flex w-fit max-w-full overflow-x-auto"}>
-        <div className="grid grid-cols-[200px] grid-rows-[150px,repeat(5,50px)] border border-b-0 border-zinc-400 [&>*]:flex [&>*]:items-center [&>*]:border-b [&>*]:border-zinc-400 [&>*]:pl-2">
-          <div className={"col-start-1 row-start-1"}></div>
+        <div className="grid grid-cols-[200px] grid-rows-[150px,repeat(5,50px)] border border-b-0 border-zinc-400 border-l-baby-blue border-t-baby-blue [&>*]:flex [&>*]:items-center [&>*]:border-b [&>*]:border-l [&>*]:border-zinc-400 [&>*]:pl-2">
+          <div className={"col-start-1 row-start-1 !border-l-baby-blue"}></div>
           <div
             className={"col-start-1 row-start-2 font-semibold text-zinc-500"}
           >

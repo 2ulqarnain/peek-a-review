@@ -26,7 +26,7 @@ export default async function Header() {
           </span>
         </Link>
       </div>
-      <div className="bg-baby-blue text-black">
+      <div className="bg-Aquamarine text-black">
         <NavigationMenu categories={categories} />
       </div>
     </header>

@@ -46,7 +46,7 @@ function SubCategories({ data }: { data: Product[] }) {
             data.map((product) => (
               <li key={product.id}>
                 <Link
-                  href={`/category`}
+                  href={`/product/${product.id}`}
                   className={
                     "group h-full w-full transition-transform hover:scale-105 hover:text-baby-blue-darker"
                   }
