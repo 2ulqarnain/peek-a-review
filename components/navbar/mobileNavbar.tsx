@@ -1,7 +1,6 @@
 "use client";
 
 import { getCategories_res } from "@/apis/types";
-import { normalToKebab } from "@/utils/functions";
 import Link from "next/link";
 import { useState } from "react";
 import { NavItems, SideNav } from "react-swiper-sidenav";
@@ -19,13 +18,13 @@ export default function MobileNavigationMenu({
       childrenItems: [
         {
           itemProps: {
-            to: `/category/${normalToKebab(category)}`,
+            to: `/category/${encodeURIComponent(category)}`,
             label: `All in ${category}`,
           },
         },
         ...categories[category].map((subCategory) => ({
           itemProps: {
-            to: `/category/${normalToKebab(category)}/${normalToKebab(subCategory)}`,
+            to: `/category/${encodeURIComponent(category)}/${encodeURIComponent(subCategory)}`,
             label: subCategory,
           },
         })),

@@ -1,10 +1,6 @@
 import Image from "next/image";
 import { getProductById, getSimilarProductsByProduct } from "@/apis/get";
-import {
-  OtherTopProduct,
-  product_res,
-  similarProducts_res,
-} from "@/apis/types";
+import { Product, product_res, similarProducts_res } from "@/apis/types";
 import { ArrowUpRight, Star } from "lucide-react";
 import placeholderImage from "@/public/placeholder-pattern.jpg";
 import Link from "next/link";
@@ -56,7 +52,11 @@ function ProductInfo({
           <label>Rating:</label>
           <span className="align-end inline-flex items-end text-zinc-400">
             {new Array(5).fill(null).map((_, i) => (
-              <Star className={i < rating ? "fill-salmon stroke-salmon" : ""} />
+              <Star
+                className={
+                  rating ? (i < rating ? "fill-salmon stroke-salmon" : "") : ""
+                }
+              />
             ))}
           </span>
         </div>
@@ -117,7 +117,7 @@ function OtherTopProducts({ data }: { data: similarProducts_res }) {
   );
 }
 
-function OtherTopProductCard({ product }: { product: OtherTopProduct }) {
+function OtherTopProductCard({ product }: { product: Product }) {
   return (
     <div className="grid grid-cols-[200px] grid-rows-[150px,repeat(5,50px)] border border-b-0 border-l-0 border-zinc-400 [&>*]:flex [&>*]:items-center [&>*]:justify-center [&>*]:border-b [&>*]:border-zinc-400">
       <div
@@ -127,7 +127,7 @@ function OtherTopProductCard({ product }: { product: OtherTopProduct }) {
       >
         <Image
           src={product.image_url ?? placeholderImage}
-          alt={product.name}
+          alt={product.name ?? "Baby Product"}
           layout="fill"
         />
       </div>
@@ -152,7 +152,11 @@ function OtherTopProductCard({ product }: { product: OtherTopProduct }) {
                 .map((_, i) => (
                   <Star
                     className={
-                      i < product.rating ? "fill-salmon stroke-salmon" : ""
+                      product.rating
+                        ? i < product.rating
+                          ? "fill-salmon stroke-salmon"
+                          : ""
+                        : ""
                     }
                   />
                 ))}
@@ -170,7 +174,7 @@ function OtherTopProductCard({ product }: { product: OtherTopProduct }) {
         href={product.featured_sites}
         className="row-start-6 max-w-[20ch] truncate capitalize hover:text-baby-blue-darker hover:underline"
       >
-        {product.featured_sites.match(/www.(.+)\./)?.[1]}
+        {product.featured_sites?.match(/www.(.+)\./)?.[1]}
       </a>
     </div>
   );

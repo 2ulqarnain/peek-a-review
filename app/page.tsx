@@ -1,14 +1,13 @@
 import Image from "next/image";
 import OtherMostPopularProducts from "@/app/components/OtherMostPopularProducts";
 import ProductCard from "@/components/ProductCard";
-import { getCategoriesData, getFeaturedProduct } from "@/apis/get";
+import { getCategoriesData, getFeaturedProducts } from "@/apis/get";
 import { categoryData_res } from "@/apis/types";
 import Link from "next/link";
-import { normalToKebab } from "@/utils/functions";
 
 export default async function Home() {
   const [data, categories] = await Promise.all([
-    getFeaturedProduct(),
+    getFeaturedProducts(),
     getCategoriesData(),
   ]);
   return (
@@ -66,7 +65,7 @@ function Categories({ data }: { data: categoryData_res }) {
                 {subCategories.map((subCategory) => (
                   <li key={subCategory.id}>
                     <Link
-                      href={`/category/${normalToKebab(categoryName)}/${normalToKebab(subCategory.subcategory_name)}`}
+                      href={`/category/${encodeURIComponent(categoryName)}/${encodeURIComponent(subCategory.subcategory_name)}`}
                       className={
                         "group h-full w-full transition-transform hover:scale-105 hover:text-baby-blue-darker"
                       }

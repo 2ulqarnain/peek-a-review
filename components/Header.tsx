@@ -3,7 +3,6 @@ import Image from "next/image";
 import logo from "../public/peek-a-review-logo.png";
 import HoverDropdown from "@/components/dropdowns/HoverDropdown";
 import { getCategories } from "@/apis/get";
-import { normalToKebab } from "@/utils/functions";
 import MobileNavigationMenu from "./navbar/mobileNavbar";
 import { getCategories_res } from "@/apis/types";
 
@@ -50,7 +49,7 @@ async function NavigationMenu({
           key={category}
           triggerComponent={
             <Link
-              href={`/category/${normalToKebab(category)}`}
+              href={`/category/${encodeURIComponent(category)}`}
               className={"peer"}
             >
               {category}
@@ -60,7 +59,7 @@ async function NavigationMenu({
           {categories[category].map((subCategory) => (
             <li key={subCategory}>
               <Link
-                href={`/category/${normalToKebab(category)}/${normalToKebab(subCategory)}`}
+                href={`/category/${encodeURIComponent(category)}/${encodeURIComponent(subCategory)}`}
                 className={"block"}
               >
                 {subCategory}

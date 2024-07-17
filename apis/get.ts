@@ -11,8 +11,15 @@ export const getCategories = async (): Promise<getCategories_res> => {
   return fetchData("/api/categories/");
 };
 
-export const getFeaturedProduct = async (): Promise<featuredProducts_res> => {
-  return fetchData("/api/featured-products/");
+export const getFeaturedProducts = async (type?: {
+  category: string;
+  subcategory?: string;
+}): Promise<featuredProducts_res> => {
+  if (type) {
+    const urlParams = new URLSearchParams(type);
+    return fetchData(`/api/featured-products/?${urlParams}`);
+  }
+  return fetchData(`/api/featured-products/`);
 };
 
 export const getCategoriesData = async (): Promise<categoryData_res> => {

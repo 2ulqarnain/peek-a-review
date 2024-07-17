@@ -3,16 +3,8 @@ export type getCategories_res = {
 };
 
 export type featuredProducts_res = {
-  product: {
-    id: number;
-    name: string;
-    image_url: string;
-  };
-  products: Array<{
-    id: number;
-    name: string;
-    image_url: string;
-  }>;
+  product: Product;
+  products: Product[];
 };
 
 export type categoryData_res = {
@@ -24,32 +16,19 @@ export type categoryData_res = {
   }>;
 };
 
-export type product_res = {
-  id: number;
+export type product_res = Product;
+
+export type similarProducts_res = Array<Product>;
+
+export interface Product {
+  id?: number;
   name?: string;
   price?: string;
   image_url?: string;
   affiliate_link?: string;
   affiliate_site?: string;
-  rating?: any;
+  rating?: number;
   featured_sites?: string;
-  created_at?: string;
-  updated_at?: string;
   category?: string;
   sub_category?: string;
-};
-
-export type similarProducts_res = Array<OtherTopProduct>;
-
-export type OtherTopProduct = {
-  id: number;
-  name: string;
-  price: string;
-  image_url: string;
-  affiliate_link: string;
-  affiliate_site: string;
-  rating: any;
-  featured_sites: string;
-  category: string;
-  sub_category: string;
-};
+}
