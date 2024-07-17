@@ -19,7 +19,7 @@ export default async function Header() {
               "relative flex aspect-[2] w-32 items-center justify-center italic text-zinc-500"
             }
           >
-            <Image src={logo} alt={"peek-a-review"} fill />
+            <Image src={logo} alt={"peek a review website logo"} fill />
           </div>
           <span className={"my-auto text-sm font-bold sm:text-2xl"}>
             Peek-A-Review

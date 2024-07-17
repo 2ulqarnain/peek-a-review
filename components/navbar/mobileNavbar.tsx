@@ -34,7 +34,11 @@ export default function MobileNavigationMenu({
 
   return (
     <div className="h-7 text-black lg:hidden">
-      <button className="text-white" onClick={() => setIsNavbarOpen(true)}>
+      <button
+        name="open-mobile-menu-button"
+        className="text-white"
+        onClick={() => setIsNavbarOpen(true)}
+      >
         {isNavbarOpen ? <CrossIcon /> : <HamburgerIcon />}
       </button>
       <SideNav
