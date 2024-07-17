@@ -51,13 +51,26 @@ function ProductInfo({
         <div className="flex">
           <label>Rating:</label>
           <span className="align-end inline-flex items-end text-zinc-400">
-            {new Array(5).fill(null).map((_, i) => (
-              <Star
-                className={
-                  rating ? (i < rating ? "fill-salmon stroke-salmon" : "") : ""
-                }
-              />
-            ))}
+            {rating === null
+              ? [
+                  new Array(4).fill(
+                    <Star className="fill-salmon stroke-salmon" />,
+                  ),
+                  <Star />,
+                ]
+              : new Array(5)
+                  .fill(null)
+                  .map((_, i) => (
+                    <Star
+                      className={
+                        rating
+                          ? i < rating
+                            ? "fill-salmon stroke-salmon"
+                            : ""
+                          : ""
+                      }
+                    />
+                  ))}
           </span>
         </div>
         {affiliate_link && (

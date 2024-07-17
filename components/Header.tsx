@@ -26,7 +26,7 @@ export default async function Header() {
           </span>
         </Link>
       </div>
-      <div className="bg-Aquamarine text-black">
+      <div className="bg-baby-blue text-black">
         <NavigationMenu categories={categories} />
       </div>
     </header>
@@ -42,7 +42,9 @@ async function NavigationMenu({
 
   return (
     <div
-      className={"m-auto hidden justify-end gap-2 !text-sm font-medium lg:flex"}
+      className={
+        "m-auto mr-10 hidden justify-end gap-2 !text-sm font-medium lg:flex"
+      }
     >
       {Object.keys(categories ?? {}).map((category) => (
         <HoverDropdown
